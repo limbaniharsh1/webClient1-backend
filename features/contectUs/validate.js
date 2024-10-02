@@ -24,7 +24,7 @@ const contactSchema = Joi.object({
   }),
 });
 
-// Middleware to validate request data against the schema 
+// Middleware to validate request data against the schema
 const validateContactForm = (req, res, next) => {
   const { error } = contactSchema.validate(req.body, { abortEarly: false });
 
