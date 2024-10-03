@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const contactRoutes = require("./features/contectUs/routes.js");
 const connectDB = require("./config/db.js");
-const cors = require(cors)
+const cors = require("cors")
 
 dotenv.config();
 const app = express();
