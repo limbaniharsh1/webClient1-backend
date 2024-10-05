@@ -28,12 +28,6 @@ const corsOptions = {
 // Enable CORS with the specified options
 app.use(cors(corsOptions));
 
-app.use(
-  cors({
-    origin: ["https://shreedemo.netlify.app", "http://localhost:5173/"], // or your React app's URL
-  })
-);
-
 // Middleware
 app.use(bodyParser.json());
 
