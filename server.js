@@ -3,12 +3,16 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const contactRoutes = require("./features/contectUs/routes.js");
 const connectDB = require("./config/db.js");
-const cors = require("cors")
+const cors = require("cors");
 
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://shreedemo.netlify.app", // or your React app's URL
+  })
+);
 
 // Middleware
 app.use(bodyParser.json());
