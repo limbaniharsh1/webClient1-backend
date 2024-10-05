@@ -8,9 +8,29 @@ const cors = require("cors");
 dotenv.config();
 const app = express();
 
+const allowedOrigins = [
+  "https://shreedemo.netlify.app",
+  "http://localhost:5173",
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+// Enable CORS with the specified options
+app.use(cors(corsOptions));
+
 app.use(
   cors({
-    origin: ["https://shreedemo.netlify.app","http://localhost:5173/"], // or your React app's URL
+    origin: ["https://shreedemo.netlify.app", "http://localhost:5173/"], // or your React app's URL
   })
 );
 
