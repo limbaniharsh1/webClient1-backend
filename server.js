@@ -8,24 +8,25 @@ const cors = require("cors");
 dotenv.config();
 const app = express();
 
-// const allowedOrigins = [
-//   "https://shreedemo.netlify.app",
-//   "http://localhost:5173",
-// ];
+// Specify the allowed origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://shreevarniexport.com",
+];
 
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-// };
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 
 // Enable CORS with the specified options
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(bodyParser.json());
@@ -37,8 +38,7 @@ app.use("/api/contact", contactRoutes);
 connectDB();
 
 // Start server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  // https://webclient1-backend.onrender.com
   console.log(`Server running on port ${PORT}`);
 });
