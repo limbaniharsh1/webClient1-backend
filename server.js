@@ -10,6 +10,7 @@ const app = express();
 
 // Enable CORS with the specified options
 app.use(cors());
+console.log("test")
 
 // Middleware
 app.use(bodyParser.json());
